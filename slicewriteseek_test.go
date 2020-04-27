@@ -94,6 +94,9 @@ func TestRead(t *testing.T) {
 	if n != 2 {
 		t.Errorf("Expecting to get back an len 2 slice, got %d", n)
 	}
+	if p[0] != 1 || p[1] != 2 {
+		t.Errorf("Expecting to get back filled slice, got %v", p)
+	}
 	if _, err = s.Seek(0, io.SeekStart); err != nil {
 		t.Error(err)
 	}
