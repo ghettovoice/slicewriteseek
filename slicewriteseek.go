@@ -48,7 +48,7 @@ func (sws *SliceWriteSeeker) Write(p []byte) (n int, err error) {
 		case sws.Index+writeLen > sws.Len():
 			sws.Buffer = append(sws.Buffer[:sws.Index], p...)
 		case sws.Index+writeLen <= sws.Len():
-			sws.Buffer = append(sws.Buffer[:sws.Index], append(p, sws.Buffer[sws.Index+writeLen:]...)...)
+			copy(sws.Buffer[sws.Index:], p)
 		}
 		sws.Index += writeLen
 	}
