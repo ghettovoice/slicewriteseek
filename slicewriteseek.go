@@ -9,8 +9,8 @@ type SliceWriteSeeker struct {
 }
 
 // New creates a new SliceWriteReader
-func New() *SliceWriteSeeker {
-	return &SliceWriteSeeker{Buffer: []byte{}}
+func New(buf []byte) *SliceWriteSeeker {
+	return &SliceWriteSeeker{Buffer: buf}
 }
 
 // Len returns the length of the underlying slice
@@ -30,7 +30,7 @@ func (sws *SliceWriteSeeker) Read(p []byte) (n int, err error) {
 		cp = sws.Buffer[sws.Index:]
 	}
 	n = copy(p, cp)
-	sws.Index += int64(len(p))
+	sws.Index += int64(n)
 	return
 }
 

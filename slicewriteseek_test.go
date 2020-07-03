@@ -6,14 +6,14 @@ import (
 )
 
 func TestWrite(t *testing.T) {
-	s := New()
+	s := &SliceWriteSeeker{}
 	if _, err := s.Write([]byte{1, 2, 4}); err != nil {
 		t.Error(err)
 	}
 }
 
 func TestWriteMany(t *testing.T) {
-	s := New()
+	s := &SliceWriteSeeker{}
 	if _, err := s.Write([]byte{1, 2, 3}); err != nil {
 		t.Error(err)
 	}
@@ -26,7 +26,7 @@ func TestWriteMany(t *testing.T) {
 }
 
 func TestLen(t *testing.T) {
-	s := New()
+	s := &SliceWriteSeeker{}
 	if _, err := s.Write([]byte{1, 2, 4}); err != nil {
 		t.Error(err)
 	}
@@ -36,7 +36,7 @@ func TestLen(t *testing.T) {
 }
 
 func TestSeek(t *testing.T) {
-	s := New()
+	s := &SliceWriteSeeker{}
 	if off, err := s.Seek(0, io.SeekEnd); err != nil || off != 0 {
 		t.Error("Expecting offset to be zero at the end of an empty slice")
 	}
@@ -68,7 +68,7 @@ func TestSeek(t *testing.T) {
 }
 
 func TestRead(t *testing.T) {
-	s := New()
+	s := &SliceWriteSeeker{}
 	if _, err := s.Write([]byte{1, 2, 4}); err != nil {
 		t.Error(err)
 	}
@@ -111,7 +111,7 @@ func TestRead(t *testing.T) {
 }
 
 func TestWriteAt(t *testing.T) {
-	s := New()
+	s := &SliceWriteSeeker{}
 	if _, err := s.Write([]byte{1, 2, 4}); err != nil {
 		t.Error(err)
 	}
